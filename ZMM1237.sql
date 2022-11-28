@@ -43,10 +43,10 @@ SELECT		YEAR(MAX(DATA_REL)) AS ANO,
 			[%R],
 			[ZCAA],
 			[PrzEnt],
+			[VlrArred],
 			MAX(DATA_REL) as DATA
 		FROM ZMM1237
-	WHERE  DATA_REL in ('31/01/2022', '28/02/2022', '31/03/2022', '30/04/2022', '31/05/2022', '30/06/2022', '31/07/2022', '31/08/2022',
-						'30/09/2022', '27/10/2022', '10/11/2022') 
+	WHERE  DATA_REL in ('31/01/2022', '28/02/2022', '31/03/2022', '30/04/2022', '31/05/2022', '30/06/2022', '31/07/2022', '31/08/2022', '30/09/2022', '27/10/2022', '22/11/2022') 
 	GROUP BY YEAR(DATA_REL), MONTH(DATA_REL), 
 	[CATEGORIA],
 	[Compr],
@@ -64,7 +64,8 @@ SELECT		YEAR(MAX(DATA_REL)) AS ANO,
       [CMA],
       [%R],
 	  [ZCAA],
-	  [PrzEnt];
+	  [PrzEnt],
+	  [VlrArred];
 GO
 
 

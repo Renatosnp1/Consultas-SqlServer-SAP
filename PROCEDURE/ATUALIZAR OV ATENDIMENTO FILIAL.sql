@@ -55,3 +55,6 @@ GO
 
 SELECT FORMAT(SUM(VALOR_FAT), 'C', 'pt-br') FROM [atendimentofilial] WHERE DT_FAT >= '01/11/2022';
 SELECT * FROM [atendimentofilial] WHERE DT_FAT >= '01/11/2022' AND OV != 0;
+
+
+

@@ -34,3 +34,10 @@ GO
 --DELETE FROM [SAP_DIV].[dbo].KSB1 WHERE [Nº documento] = '';
 --DELETE [SAP_DIV].[dbo].KSB1 WHERE [Data de lançamento] BETWEEN  '01/05/2022' and '31/05/2022';
 
+USE SAP_DIV
+GO
+SELECT *  FROM KSB1 WHERE [Data de lançamento] BETWEEN '01/10/2022' AND '31/10/2022';
+GO
+
+DELETE  FROM KSB1 WHERE [Data de lançamento] BETWEEN '01/10/2022' AND '31/10/2022';
+GO

@@ -1,4 +1,4 @@
--------------------------------------- VBRK -----------------------------------------------
+-------------------------------------- VBRK -----------------------------------------------OK
 USE unifort_prod -- 09/11/2022
 GO
 SELECT		YEAR(ERDAT) as ANO,
@@ -9,7 +9,8 @@ SELECT		YEAR(ERDAT) as ANO,
 		WHERE ERDAT >= '01/10/2022' 
 		GROUP BY YEAR(ERDAT), MONTH(ERDAT), DAY(ERDAT)
 		ORDER BY 1, 2, 3;
--------------------------------------- VBRP -----------------------------------------------
+
+-------------------------------------- VBRP -----------------------------------------------OK
 USE SAP_VBRP -- 01/01/2015 - 07/11/2022
 GO
 SELECT		YEAR(ERDAT) as ANO,
@@ -20,7 +21,7 @@ SELECT		YEAR(ERDAT) as ANO,
 		WHERE ERDAT BETWEEN '01/10/2022' AND '31/12/2022'
 		GROUP BY YEAR(ERDAT), MONTH(ERDAT), DAY(ERDAT)
 		ORDER BY 1, 2, 3;
--------------------------------------- VBAP -----------------------------------------------
+-------------------------------------- VBAP -----------------------------------------------OK
 USE unifort_prod -- 09/10/2022
 GO
 SELECT		YEAR(ERDAT) as ANO,
@@ -31,7 +32,7 @@ SELECT		YEAR(ERDAT) as ANO,
 		WHERE ERDAT >= '01/11/2022' 
 		GROUP BY YEAR(ERDAT), MONTH(ERDAT), DAY(ERDAT)
 		ORDER BY 1, 2, 3;
--------------------------------------- EKBE -----------------------------------------------
+-------------------------------------- EKBE -----------------------------------------------OK
 USE unifort_prod -- 09/11/2022
 GO
 SELECT		YEAR(BUDAT) as ANO,
@@ -42,7 +43,7 @@ SELECT		YEAR(BUDAT) as ANO,
 		WHERE BUDAT >= '01/11/2022'
 		GROUP BY YEAR(BUDAT), MONTH(BUDAT), DAY(BUDAT)
 		ORDER BY 1, 2, 3;
--------------------------------------- EKPO -----------------------------------------------
+-------------------------------------- EKPO -----------------------------------------------OK
 USE unifort_prod -- 09/11/2022
 GO
 SELECT		YEAR(AEDAT) as ANO,

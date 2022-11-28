@@ -1,7 +1,7 @@
 
 /*
 -------------------------------------- CRIAÇÃO DE QUERY -----------------------------------------------
-   QUERY ANALISE VENDIA DIARIA 2022
+   QUERY ANALISE VENDA DIARIA 2022
 */
 
 USE unifort_prod
@@ -33,7 +33,6 @@ GO
 ____________________________________________________________________________________________________________________________________________________________________
 -- QUERY ANALISE DESDE DE 2015
 */
-
 USE unifort_prod
 GO
 ALTER VIEW view_analise_historico_vendas_2015
@@ -53,44 +52,17 @@ SELECT
 			p.ARKTX as 'DESC',
 			k.FKDAT as 'DATA FAT',
 			p.TXJCD as 'COD_IBGE'
-		FROM (SELECT REGIO, INCO2, FKDAT, FKART, FKSTO, SFAKN, KUNRG, VBELN  FROM unifort_prod.dbo.VBRK WHERE FKDAT BETWEEN '01/01/2015' AND '31/12/2022' and FKART = 'F2B' and FKSTO = '' and SFAKN = '') k
-		left join (SELECT NETWR, KZWI1, KZWI4, FKIMG, GSBER, VGBEL, AUBEL, MATNR, ARKTX, TXJCD ,VBELN FROM SAP_VBRP.dbo.VBRP WHERE FBUDA BETWEEN '01/01/2015' AND '31/12/2022' ) p ON (p.VBELN = k.VBELN)
+		FROM (SELECT REGIO, INCO2, FKDAT, FKART, FKSTO, SFAKN, KUNRG, VBELN  FROM unifort_prod.dbo.VBRK WHERE FKDAT BETWEEN '08/10/2022' AND '31/12/2022' and FKART = 'F2B' and FKSTO = '' and SFAKN = '') k
+		left join (SELECT NETWR, KZWI1, KZWI4, FKIMG, GSBER, VGBEL, AUBEL, MATNR, ARKTX, TXJCD ,VBELN FROM SAP_VBRP.dbo.VBRP WHERE FBUDA BETWEEN '08/10/2022' AND '31/12/2022' ) p ON (p.VBELN = k.VBELN)
 		left join unifort_prod.dbo.view_dados_cliente_dw c ON (k.KUNRG = c.MATR)
 GO
-select * from unifort_prod.dbo.view_analise_historico_vendas_2015;
+--select * from unifort_prod.dbo.view_analise_historico_vendas_2015;
+
+select MAX([DATA FAT]) from unifort_prod.dbo.view_analise_historico_vendas_2015;
 
 
---FOI CRIADO A TABELA A BAIXO PARA ANALISE HISTORICA DE VENDA PARA USO SIMPLIFICADO DA TABELA A CIMA, ASSIM REDUZINHO O TEMPO DOS CALCULOS NA VIEW
-USE query_dw
-GO
-CREATE TABLE dbo.ANALISE_HISTORICA_VENDA (
-	MATR_CLIENTE VARCHAR(15),
-	CLIENTE VARCHAR(40),
-	VALOR_FAT VARCHAR(13),
-	VALOR_FRETE VARCHAR(12),
-	QF VARCHAR(13),
-	CENTRO VARCHAR(9),
-	REGIAO VARCHAR(7),
-	REMESSA VARCHAR(15),
-	OV VARCHAR(15),
-	MATERIAL VARCHAR(19),
-	CIDADE VARCHAR(33),
-	DESCR VARCHAR(45),
-	DATA_FAT VARCHAR(15),
-	COD_IBGE VARCHAR(15));
-GO
 
 
-USE query_dw
-GO
-SELECT YEAR(DATA_FAT) ANO,
-		MONTH(DATA_FAT) MES,
-		--DAY(DATA_FAT) as MES,
-		COUNT(DATA_FAT) QTDE
-	FROM ANALISE_HISTORICA_VENDA
-	WHERE DATA_FAT >= '01/01/2015'
-	GROUP BY YEAR(DATA_FAT), MONTH(DATA_FAT)--, DAY(DATA_FAT)
-	ORDER BY 1, 2--, 3;
 
 /*
 ____________________________________________________________________________________________________________________________________________________________________
