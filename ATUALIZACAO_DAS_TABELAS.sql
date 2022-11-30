@@ -176,14 +176,26 @@ SELECT YEAR([DATA FAT]) ANO,
 	WHERE [DATA FAT] >= '01/01/2022'
 	GROUP BY YEAR([DATA FAT]), MONTH([DATA FAT]), DAY([DATA FAT])
 	ORDER BY 1, 2, 3;
--------------------------------------- VBRK -----------------------------------------------
-USE query_dw -- 09/11/2022
+-------------------------------------- ANALISE_HISTORICA_VENDA -----------------------------------------------
+USE query_dw -- 01/11/2022
 GO
 SELECT		YEAR(DATA_FAT) as ANO,
 			MONTH(DATA_FAT) as MES,
 			DAY(DATA_FAT) as DIA,
 			COUNT(DATA_FAT) as QTDE
 		FROM ANALISE_HISTORICA_VENDA
-		WHERE DATA_FAT >= '01/10/2022' 
+		WHERE DATA_FAT >= '01/11/2022' 
 		GROUP BY YEAR(DATA_FAT), MONTH(DATA_FAT), DAY(DATA_FAT)
+		ORDER BY 1, 2, 3;
+
+-------------------------------------- ANALISE_HISTORICA_VENDA -----------------------------------------------
+USE query_dw -- 09/11/2022
+GO
+SELECT		YEAR(DT_FAT) as ANO,
+			MONTH(DT_FAT) as MES,
+			DAY(DT_FAT) as DIA,
+			COUNT(DT_FAT) as QTDE
+		FROM atendimentofiliall
+		WHERE DT_FAT >= '01/11/2022' 
+		GROUP BY YEAR(DT_FAT), MONTH(DT_FAT), DAY(DT_FAT)
 		ORDER BY 1, 2, 3;
