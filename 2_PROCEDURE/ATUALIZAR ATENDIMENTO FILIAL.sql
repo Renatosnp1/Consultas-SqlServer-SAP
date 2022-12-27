@@ -25,7 +25,7 @@ ALTER PROCEDURE Atualizar_Atendimento_Filial
 					isnull(e.MENGE, 0) as 'QTDE_TRANSFERIDO',
 					isnull(e.BWART, 0) as 'TIPO_MOVIMENTO'
 				FROM (SELECT	VBELN, FKDAT, FKSTO, ERDAT, SFAKN	FROM unifort_prod.dbo.VBRK WHERE ERDAT >=  @data_rel and FKART = 'F2B' and FKSTO = '' and SFAKN = '') k
-			left join (SELECT p.WERKS, p.VBELN, p.MATNR, p.VGBEL, p.NETWR, p.FKIMG, p.KZWI1, p.AUBEL, p.FBUDA FROM SAP_VBRP.dbo.VBRP p WHERE p.FBUDA >= @data_rel) p ON (k.VBELN = p.VBELN)
+			left join (SELECT p.WERKS, p.VBELN, p.MATNR, p.VGBEL, p.NETWR, p.FKIMG, p.KZWI1, p.AUBEL, p.ERDAT FROM SAP_VBRP.dbo.VBRP p WHERE p.ERDAT >= @data_rel) p ON (k.VBELN = p.VBELN)
 			left join (SELECT	EBELN, 	MATNR, AFNAM, NETPR, MAX(AEDAT) AEDAT FROM [unifort_prod].[dbo].[EKPO] WHERE LOEKZ != 'L' AND AEDAT BETWEEN @dataInicio AND @data_rel
 									GROUP BY EBELN, MATNR, AFNAM, NETPR) o ON (p.AUBEL = o.AFNAM) and (p.MATNR = o.MATNR)
 			left join (SELECT DISTINCT * FROM [unifort_prod].[dbo].[EKBE] WHERE BWART = '861' AND BUDAT BETWEEN @dataInicio AND @data_rel ) e 

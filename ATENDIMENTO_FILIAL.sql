@@ -19,10 +19,9 @@ ALTER VIEW view_atendido_filial as
 				isnull(e.MENGE, 0) as 'QTDE_TRANSFERIDO',
 				isnull(e.BWART, 0) as 'TIPO_MOVIMENTO'
 			FROM (SELECT	VBELN, FKDAT, FKSTO, ERDAT, SFAKN FROM unifort_prod.dbo.VBRK WHERE ERDAT >= '01/01/2022' and FKART = 'F2B' and FKSTO = '' and SFAKN = '') k
-		left join (SELECT	WERKS, VBELN, MATNR, VGBEL, NETWR, FKIMG, KZWI1, AUBEL FROM SAP_VBRP.dbo.VBRP WHERE FBUDA >= '01/01/2022') p ON (k.VBELN = p.VBELN)
-		left join (SELECT	EBELN, MATNR, AFNAM, NETPR, MAX(AEDAT)	AEDAT FROM [unifort_prod].[dbo].[EKPO] WHERE LOEKZ != 'L'	GROUP BY EBELN, MATNR, AFNAM, NETPR) o ON (p.AUBEL = o.AFNAM) and (p.MATNR = o.MATNR)
-		left join (SELECT DISTINCT ee.MENGE, ee.BWART, ee.EBELN, ee.MATNR, ee.BUDAT FROM [unifort_prod].[dbo].[EKBE] ee 
-					WHERE BWART = '861' AND ee.BUDAT > '01/01/2022') e ON (o.EBELN = e.EBELN) and (o.MATNR = e.MATNR)
+		left join (SELECT	WERKS, VBELN, MATNR, VGBEL, NETWR, FKIMG, KZWI1, AUBEL FROM SAP_VBRP.dbo.VBRP WHERE ERDAT >= '01/01/2022') p ON (k.VBELN = p.VBELN)
+		left join (SELECT	EBELN, MATNR, AFNAM, NETPR, MAX(AEDAT)	AEDAT FROM [unifort_prod].[dbo].[EKPO] WHERE LOEKZ != 'L' GROUP BY EBELN, MATNR, AFNAM, NETPR) o ON (p.AUBEL = o.AFNAM) and (p.MATNR = o.MATNR)
+		left join (SELECT DISTINCT ee.MENGE, ee.BWART, ee.EBELN, ee.MATNR, ee.BUDAT FROM [unifort_prod].[dbo].[EKBE] ee WHERE BWART = '861' AND ee.BUDAT > '01/01/2022') e ON (o.EBELN = e.EBELN) and (o.MATNR = e.MATNR)
 GO
 
 SELECT * FROM view_atendido_filial

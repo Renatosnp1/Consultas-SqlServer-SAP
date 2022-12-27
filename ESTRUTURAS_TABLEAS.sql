@@ -17,3 +17,20 @@ SELECT *  FROM [unifortprodtable].[dbo].[VBRP];
 CREATE INDEX indexVBELN ON [unifortprodtable].[dbo].[VBRP] (VBELN);
 CREATE INDEX indexFBUDA ON [unifortprodtable].[dbo].[VBRP] (FBUDA);
 ALTER TABLE [unifortprodtable].[dbo].[VBRP] ALTER COLUMN [VBELN] varchar(50) NOT NULL;
+
+
+--Como obter o 1º dia do mês anterior:
+select dateadd(mm,-1,dateadd(dd,-day(getdate())+1,getdate()))
+
+--Como obter o último dia do mês anterior:
+select dateadd(dd,-day(getdate()),getdate())
+
+
+
+ALTER TABLE VBRK ADD CONSTRAINT PK_VBELN PRIMARY KEY (VBELN);
+
+ALTER TABLE SAP_VBRP.dbo.VBRP ADD CONSTRAINT FK_VBELN FOREIGN KEY (VBELN) REFERENCES unifort_prod.dbo.VBRK (VBELN);
+
+
+
+ALTER TABLE [SAP_DIV].[dbo].[TABELA1] ADD DTtttt1 DATETIME DEFAULT CURRENT_TIMESTAMP

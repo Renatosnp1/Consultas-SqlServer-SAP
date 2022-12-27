@@ -1,7 +1,7 @@
 USE query_dw
 GO
 
-CREATE PROCEDURE Atualizar_dias_de_venda_material_estoque
+ALTER PROCEDURE Atualizar_dias_de_venda_material_estoque
 	@dtInicio DATE,
 	@dtFim DATE
 
@@ -27,6 +27,8 @@ CREATE PROCEDURE Atualizar_dias_de_venda_material_estoque
 	DECLARE @mediaEstoque INT;
 	DECLARE @estoqueMin INT;
 	DECLARE @estoqueMax INT;
+
+	DELETE FROM DIAS_ESTOQUE_ZMM1237;
 
 	WHILE  @idx <= @qtde_linha
 	BEGIN
